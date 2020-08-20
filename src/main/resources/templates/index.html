@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Listagem de Colaboradores</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+</head>
+<body>
+	<h1 style="text-align: center; margin-top: 50px">Colaboradores MJV</h1>
+	<div class="container">
+		<a style="margin-top: 20px; margin-bottom: 20px" class="waves-effect waves-light btn" href="cadastroColaborador"><i
+			class="material-icons left">group_add</i>Novo Colaborador</a>
+		<table>
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Email</th>
+					<th>Cargo</th>
+					<th>Ações</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="colaborador: ${colaboradores}">
+					<td><span th:text="${colaborador.nome}"></span></td>
+					<td><span th:text="${colaborador.email}"></span></td>
+					<td><span th:text="${colaborador.cargo}"></span></td>
+					<td>
+						<a th:href="${(#mvc.url('CC#editarColaborador').arg(0, colaborador.id)).build()}" class="btn-floating btn-small cyan">
+						<i class="material-icons left">create</i></a> 
+						<a th:href="${(#mvc.url('CC#deletarColaborador').arg(0, colaborador.id)).build()}" class="btn-floating btn-small red">
+						<i class="material-icons left">delete</i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
